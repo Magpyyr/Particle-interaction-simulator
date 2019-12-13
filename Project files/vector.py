@@ -12,3 +12,5 @@ class Vector:           # This can be location, speed, force or acceleration
 
     def get_coordinates(self):
         return [self.x, self.y, self.z]
+
+

@@ -22,6 +22,8 @@ def create_particle(particles):
     particles.append(new_particle)
     print("New particle {} created!\n".format(name))
 
+    return particles
+
 
 def destroy_particle(particles):
     pass
@@ -30,7 +32,16 @@ def simulation(particles):
     pass
 
 def print_particles(particles):
-    pass
+
+    print("Printing a list of all particles...\n")
+    for i in range(len(particles)):
+        location = particles[i].get_location
+        location_s = "[" + location[0] + " " + location[1] + " " + location[2] + "]"
+        print("\tParticle number {:d}, name: {:s}, mass: {:f}, charge: {.f}, location: {".format(i+1,
+                                                                                particles[i].get_name,
+                                                                                particles[i].get_mass,
+                                                                                particles[i].get_charge,
+                                                                                location_s))
 
 
 def main():
@@ -55,7 +66,7 @@ def main():
             choice = int(input())
 
         elif choice == 1:
-            create_particle(particles)
+            particles = create_particle(particles)
             choice = -1
 
         elif choice == 2:
