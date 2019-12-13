@@ -13,10 +13,10 @@ def create_particle(particles):
 
     location_s = location_s.rstrip()
     location = location_s.split( )
-    x = int(location[0])
-    y = int(location[1])
-    z = int(location[2])
-    location = Vector(x,y,z)
+    location[0] = int(location[0])
+    location[1] = int(location[1])
+    location[2] = int(location[2])
+    location = Vector(location)
 
     new_particle = Particle(name, mass, charge, location)
     particles.append(new_particle)
@@ -29,6 +29,9 @@ def destroy_particle(particles):
 def simulation(particles):
     pass
 
+def print_particles(particles):
+    pass
+
 
 def main():
 
@@ -39,7 +42,7 @@ def main():
     print("Hello and welcome to Particle Interaction Simulation 0.1.")
 
 
-    while choice != 4:      # The program operates within this while loop
+    while choice != 5:      # The program operates within this while loop
 
         if choice == -1:
 
@@ -47,7 +50,8 @@ def main():
             print("  1. Create a new particle")
             print("  2. Destroy a particle")
             print("  3. Simulate the interaction of existing particles")
-            print("  4. Exit simulation\n")
+            print("  4. Print all particles")
+            print("  5. Exit simulation\n")
             choice = int(input())
 
         elif choice == 1:
@@ -62,10 +66,14 @@ def main():
             simulation(particles)
             choice = -1
 
+        elif choice == 4:
+            print_particles(particles)
+            choice = -1
+
         else:
             print("Invalid command, try again!")
 
-    print("Simulation terminating...")
+    print("\nSimulation terminating...")
 
 
 

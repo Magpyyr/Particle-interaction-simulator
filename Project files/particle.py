@@ -10,7 +10,7 @@ class Particle:
         self.speed = 0
         self.acceleration = 0
 
-    # methods to change the attributes of a particle
+    # methods to change the properties of a particle
 
     def set_name(self, new_name):
         self.name = new_name
@@ -24,7 +24,7 @@ class Particle:
     def set_location(self, new_location):
         self.location = new_location
 
-    # methods to get the attributes of a particle
+    # methods to get the properties of a particle
 
     def get_name(self):
         return self.name

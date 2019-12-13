@@ -1,4 +1,4 @@
-class Vector:
+class Vector:           # This can be location, speed, force or acceleration
 
     def __init__(self, xyz):
         self.x = xyz[0]
