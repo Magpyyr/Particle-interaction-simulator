@@ -12,7 +12,7 @@ def create_particle(particles):
     location_s = input("Finally, enter a location for the particle in the format 'x y z' (m).\n")
 
     location_s = location_s.rstrip()
-    location = location_s.split( )
+    location = location_s.split(" ")
     location[0] = int(location[0])
     location[1] = int(location[1])
     location[2] = int(location[2])
@@ -35,15 +35,20 @@ def print_particles(particles):
 
     print("Printing a list of all particles...\n")
     for i in range(len(particles)):
-        location = particles[i].get_location
-        location = location.get_coordinates
+        location = particles[i].get_location()
+        location = location.get_coordinates()
         location_s = "[" + str(location[0]) + " " + str(location[1]) + " " + str(location[2]) + "]"
-        print("\tParticle number {:d}, name: {:s}, mass: {:f}, charge: {.f}, location: {".format(i+1,
-                                                                                particles[i].get_name,
-                                                                                particles[i].get_mass,
-                                                                                particles[i].get_charge,
-                                                                                location_s))
-        print("\nList complete, the simulation contains {:d} particles.\n".format(i+1))
+
+        name = particles[i].get_name()
+        mass = particles[i].get_mass()
+        charge = particles[i].get_charge()
+        print("\tParticle number {}, name: {}, mass: {}u, charge: {}e, location: {}".format(i+1,
+                                                                                    name,
+                                                                                    mass,
+                                                                                    charge,
+                                                                                    location_s))
+
+    print("\nList complete, the simulation contains {:d} particles.\n".format(i+1))
 
 
 def load_particles(particles):
