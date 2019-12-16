@@ -4,7 +4,7 @@
 from particle import Particle
 from vector import Vector
 
-def create_particle(particles):
+def create_particle(particles):                # ADD A PARTICLE TO THE SIMULATION
 
     name = input("Start by entering a name for your particle.\n")
     mass = input("Next, enter the mass of {} (u).\n".format(name))
@@ -25,13 +25,24 @@ def create_particle(particles):
     return particles
 
 
-def destroy_particle(particles):
+def destroy_particle(particles):            # REMOVE A SPECIFIED PARTICLE FROM THE SIMULATION
     pass
 
-def simulation(particles):
-    pass
 
-def print_particles(particles):
+def simulation(particles):                  # THE ACTUAL SIMULATION HAPPENS HERE
+
+    TIME = int(input("Enter the amount of time you want to simulate in ms.\n"))
+
+    for i in range(TIME):           # Everything is calculated once every millisecond
+
+        for a in range(len(particles)):
+            protagonist = particles[a]
+            protagonist
+
+
+
+
+def print_particles(particles):             # PRINT A LIST OF ALL THE PARTICLES IN THE SIMULATION
 
     print("Printing a list of all particles...\n")
     for i in range(len(particles)):
@@ -43,10 +54,10 @@ def print_particles(particles):
         mass = particles[i].get_mass()
         charge = particles[i].get_charge()
         print("\tParticle number {}, name: {}, mass: {}u, charge: {}e, location: {}".format(i+1,
-                                                                                    name,
-                                                                                    mass,
-                                                                                    charge,
-                                                                                    location_s))
+                                                                                     name,
+                                                                                     mass,
+                                                                                     charge,
+                                                                                     location_s))
 
     print("\nList complete, the simulation contains {:d} particles.\n".format(i+1))
 
