@@ -36,19 +36,42 @@ def interaction(protagonist, victim):
 
     protagonist_mass = protagonist.get_mass() * 1.66053904 * 10**(-27)           # unit conversion to SI
     protagonist_charge = protagonist.get_charge() * 1.602176634 * 10**(-19)      # unit conversion to SI
-    protagonist_location = protagonist.get_location()
-    protagonist_xyz = protagonist_location.get_coordinates()
+    protagonist_xyz = protagonist.get_location()
 
     victim_mass = victim.get_mass() * 1.66053904 * 10**(-27)           # unit conversion to SI
     victim_charge = victim.get_charge() * 1.602176634 * 10**(-19)      # unit conversion to SI
-    victim_location = victim.get_location()
-    victim_xyz = victim_location.get_coordinates
+    victim_xyz = victim.get_location()
 
-    G = 6.67384 * 10**(-11)  # gravitational constant
-    distance =
+    G = 6.67384 * 10**(-11)                                  # gravitational constant
+    distance = math.sqrt( (protagonist_xyz[0]-victim_xyz[0])**2 + (protagonist_xyz[1]-victim_xyz[1])**2
+                          + (protagonist_xyz[1]-victim_xyz[1])**2 )
+
+    gravity_tot = G * protagonist_mass * victim_mass / (distance**2)
+    DTP = [(protagonist_xyz[0]-victim_xyz[0])/distance,
+           (protagonist_xyz[1]-victim_xyz[1])/distance,
+           (protagonist_xyz[1]-victim_xyz[1])/distance]     # unit vector pointing to protagonist
+    DTV = [-DTP[0], -DTP[1], -DTP[2]]                       # unit vector pointing to victim
+
+    victim_force = [DTP[0] * gravity_tot, DTP[1] * gravity_tot, DTP[2] * gravity_tot]
+    protagonist_force = [DTV[0] * gravity_tot, DTV[1] * gravity_tot, DTV[2] * gravity_tot]
 
 
-def simulation(particles):                  # THE ACTUAL SIMULATION HAPPENS HERE
+def move_particles(particles):
+
+    for p in range(len(particles)):
+        A = particles[p]
+        A_location = A.get_location()
+        A_speed = A.get_speed()
+        A_acc = A.get_acceleration()
+
+        new_x = A_location[0] + A_speed[0] * 0.001
+        new_y = A_location[1] + A_speed[1] * 0.001
+        new_z = A_location[2] + A_speed[2] * 0.001
+
+
+
+
+def simulation(particles):                  # time frame for the simulation
 
     TIME = int(input("Enter the amount of time you want to simulate in ms.\n"))
 
@@ -72,7 +95,6 @@ def print_particles(particles):             # PRINT A LIST OF ALL THE PARTICLES 
     print("Printing a list of all particles...\n")
     for i in range(len(particles)):
         location = particles[i].get_location()
-        location = location.get_coordinates()
         location_s = "[" + str(location[0]) + " " + str(location[1]) + " " + str(location[2]) + "]"
 
         name = particles[i].get_name()
