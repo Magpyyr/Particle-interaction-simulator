@@ -3,6 +3,7 @@
 
 from particle import Particle
 from vector import Vector
+import math
 
 def create_particle(particles):                # ADD A PARTICLE TO THE SIMULATION
 
@@ -17,8 +18,10 @@ def create_particle(particles):                # ADD A PARTICLE TO THE SIMULATIO
     location[1] = int(location[1])
     location[2] = int(location[2])
     location = Vector(location)
+    speed = Vector([0, 0, 0])
+    acceleration = Vector([0, 0, 0])
 
-    new_particle = Particle(name, mass, charge, location)
+    new_particle = Particle(name, mass, charge, location, speed, acceleration)
     particles.append(new_particle)
     print("New particle {} created!\n".format(name))
 
@@ -29,15 +32,37 @@ def destroy_particle(particles):            # REMOVE A SPECIFIED PARTICLE FROM T
     pass
 
 
+def interaction(protagonist, victim):
+
+    protagonist_mass = protagonist.get_mass() * 1.66053904 * 10**(-27)           # unit conversion to SI
+    protagonist_charge = protagonist.get_charge() * 1.602176634 * 10**(-19)      # unit conversion to SI
+    protagonist_location = protagonist.get_location()
+    protagonist_xyz = protagonist_location.get_coordinates()
+
+    victim_mass = victim.get_mass() * 1.66053904 * 10**(-27)           # unit conversion to SI
+    victim_charge = victim.get_charge() * 1.602176634 * 10**(-19)      # unit conversion to SI
+    victim_location = victim.get_location()
+    victim_xyz = victim_location.get_coordinates
+
+    G = 6.67384 * 10**(-11)  # gravitational constant
+    distance =
+
+
 def simulation(particles):                  # THE ACTUAL SIMULATION HAPPENS HERE
 
     TIME = int(input("Enter the amount of time you want to simulate in ms.\n"))
 
-    for i in range(TIME):           # Everything is calculated once every millisecond
+    for t in range(TIME):           # Everything is calculated once every millisecond
 
-        for a in range(len(particles)):
+        totalP = len(particles)
+
+        for a in range(totalP):
             protagonist = particles[a]
-            protagonist
+
+            for b in range(a, totalP):
+                victim = particles[b]
+                interaction(protagonist, victim)
+
 
 
 
@@ -82,10 +107,11 @@ def load_particles(particles):
         location.append(int(sline[3]))
         location.append(int(sline[4]))
         location.append(int(sline[5]))
-
-
         location = Vector(location)
-        new_particle = Particle(name, mass, charge, location)
+
+        speed = Vector([0, 0, 0])
+        acceleration = Vector([0, 0, 0])
+        new_particle = Particle(name, mass, charge, location, speed, acceleration)
         particles.append(new_particle)
         counter += 1
 

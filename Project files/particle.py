@@ -2,13 +2,13 @@ class Particle:
 
     particle_count = 0
 
-    def __init__(self, name, mass, charge, location):
+    def __init__(self, name, mass, charge, location, speed, acceleration):
         self.__name = name
         self.__mass = mass
         self.__charge = charge
         self.__location = location
-        self.__speed = 0
-        self.__acceleration = 0
+        self.__speed = speed
+        self.__acceleration = acceleration
 
     # methods to change the properties of a particle
 
