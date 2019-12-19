@@ -9,8 +9,8 @@ import math
 def create_particle(particles):                # ADD A PARTICLE TO THE SIMULATION
 
     name = input("Start by entering a name for your particle.\n")
-    mass = input("Next, enter the mass of {} (u).\n".format(name))
-    charge = input("Next, enter its charge (C).\n")
+    mass = float(input("Next, enter the mass of {} (u).\n".format(name)))
+    charge = float(input("Next, enter its charge (C).\n"))
     location_s = input("Finally, enter a location for the particle in the format 'x y z' (m).\n")
 
     location_s = location_s.rstrip()
@@ -47,7 +47,7 @@ def interaction(protagonist, victim):
     G = 6.67384 * 10**(-11)                                  # gravitational constant
     distance = math.sqrt( (protagonist_xyz[0]-victim_xyz[0])**2 + (protagonist_xyz[1]-victim_xyz[1])**2
                           + (protagonist_xyz[1]-victim_xyz[1])**2 )
-
+    print(distance)
     gravity = G * protagonist_mass * victim_mass / (distance**2)
     DTP = [(protagonist_xyz[0]-victim_xyz[0])/distance,
            (protagonist_xyz[1]-victim_xyz[1])/distance,
@@ -114,6 +114,7 @@ def simulation(particles):                  # time frame for the simulation
 
     TIME = int(input("Enter the amount of time you want to simulate in ms.\n"))
 
+    print("STARTING SIMULATION, SIMULATING FOR {} MILLISECONDS.\n".format(TIME))
     for t in range(TIME):              # Everything is calculated once every millisecond
 
         totalP = len(particles)
@@ -124,6 +125,7 @@ def simulation(particles):                  # time frame for the simulation
             for b in range(a, totalP):
                 victim = particles[b]
                 interaction(protagonist, victim)
+    print("\nSIMULATION COMPLETE.\n")
 
 
 def print_particles(particles):             # PRINT A LIST OF ALL THE PARTICLES IN THE SIMULATION
@@ -158,13 +160,13 @@ def load_particles(particles):
             pass
 
         name = sline[0]
-        mass = sline[1]
-        charge = sline[2]
+        mass = float(sline[1])
+        charge = float(sline[2])
 
         location = []
-        location.append(int(sline[3]))
-        location.append(int(sline[4]))
-        location.append(int(sline[5]))
+        location.append(float(sline[3]))
+        location.append(float(sline[4]))
+        location.append(float(sline[5]))
         location = Vector(location)
 
         speed = Vector([0, 0, 0])
