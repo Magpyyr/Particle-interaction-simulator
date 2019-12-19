@@ -83,7 +83,6 @@ def interaction(protagonist, victim):
     victim.set_acceleration(victim_new_acc)
 
 
-
 def move_particles(particles):
 
     for p in range(len(particles)):
@@ -115,7 +114,7 @@ def simulation(particles):                  # time frame for the simulation
 
     TIME = int(input("Enter the amount of time you want to simulate in ms.\n"))
 
-    for t in range(TIME):           # Everything is calculated once every millisecond
+    for t in range(TIME):              # Everything is calculated once every millisecond
 
         totalP = len(particles)
         move_particles(particles)
