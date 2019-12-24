@@ -1,4 +1,4 @@
-# This is Particle Interaction Simulator 0.1 by Pyry Vaara.
+# This is Particle Interaction Simulator 0.2 by Pyry Vaara.
 # It is a work in progress.
 
 from particle import Particle
@@ -197,40 +197,43 @@ def main():
     print("Hello and welcome to Particle Interaction Simulation 0.1.")
 
     while choice != 6:      # The program operates within this while loop
-        if choice == -1:
+        try:
+            if choice == -1:
 
-            print("What would you like to do? Enter your choice as, for example, '1'.\n")
-            print("  1. Create a new particle")
-            print("  2. Load particles from a file")
-            print("  3. Destroy a particle")
-            print("  4. Simulate the interaction of existing particles")
-            print("  5. Print all particles")
-            print("  6. Exit simulation\n")
-            choice = int(input())
+                print("What would you like to do? Enter your choice as, for example, '1'.\n")
+                print("  1. Create a new particle")
+                print("  2. Load particles from a file")
+                print("  3. Destroy a particle")
+                print("  4. Simulate the interaction of existing particles")
+                print("  5. Print all particles")
+                print("  6. Exit simulation\n")
+                choice = int(input())
 
-        elif choice == 1:
-            particles = create_particle(particles)
-            choice = -1
+            elif choice == 1:
+                particles = create_particle(particles)
+                choice = -1
 
-        elif choice == 2:
-            particles = load_particles(particles)
-            choice = -1
+            elif choice == 2:
+                particles = load_particles(particles)
+                choice = -1
 
-        elif choice == 3:
-            destroy_particle(particles)
-            choice = -1
+            elif choice == 3:
+                destroy_particle(particles)
+                choice = -1
 
-        elif choice == 4:
-            simulation(particles)
-            choice = -1
+            elif choice == 4:
+                simulation(particles)
+                choice = -1
 
-        elif choice == 5:
-            print_particles(particles)
-            choice = -1
+            elif choice == 5:
+                print_particles(particles)
+                choice = -1
 
-        else:
+            else:
+                print("Invalid command, try again!")
+        except ValueError:
             print("Invalid command, try again!")
-
+            choice = -1
     print("\nSimulation terminating...")
 
 
