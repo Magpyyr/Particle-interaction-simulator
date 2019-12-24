@@ -197,7 +197,6 @@ def main():
     print("Hello and welcome to Particle Interaction Simulation 0.1.")
 
     while choice != 6:      # The program operates within this while loop
-        try
         if choice == -1:
 
             print("What would you like to do? Enter your choice as, for example, '1'.\n")
