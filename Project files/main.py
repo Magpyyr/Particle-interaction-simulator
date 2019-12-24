@@ -45,9 +45,16 @@ def interaction(protagonist, victim):
 
     # CALCULATIONS FOR GRAVITATIONAL INTERACTION
     G = 6.67384 * 10**(-11)                                  # gravitational constant
-    distance = math.sqrt( (protagonist_xyz[0]-victim_xyz[0])**2 + (protagonist_xyz[1]-victim_xyz[1])**2
-                          + (protagonist_xyz[1]-victim_xyz[1])**2 )
-    print(distance)
+    distance = math.sqrt( pow(protagonist_xyz[0]-victim_xyz[0], 2) + pow(protagonist_xyz[1]-victim_xyz[1], 2)
+                          + pow(protagonist_xyz[2]-victim_xyz[2], 2) )
+    # print(protagonist.get_name())
+    # print(victim.get_name())
+    # print(pow(protagonist_xyz[0]-victim_xyz[0], 2) + pow(protagonist_xyz[1]-victim_xyz[1], 2)
+    #                       + pow(protagonist_xyz[2]-victim_xyz[2], 2))
+    # print(pow(protagonist_xyz[0]-victim_xyz[0], 2))
+    # print(pow(protagonist_xyz[1]-victim_xyz[1], 2))
+    # print(pow(protagonist_xyz[2]-victim_xyz[2], 2))
+
     gravity = G * protagonist_mass * victim_mass / (distance**2)
     DTP = [(protagonist_xyz[0]-victim_xyz[0])/distance,
            (protagonist_xyz[1]-victim_xyz[1])/distance,
@@ -122,7 +129,7 @@ def simulation(particles):                  # time frame for the simulation
         for a in range(totalP):
             protagonist = particles[a]
 
-            for b in range(a, totalP):
+            for b in range(a + 1, totalP):
                 victim = particles[b]
                 interaction(protagonist, victim)
     print("\nSIMULATION COMPLETE.\n")
@@ -149,7 +156,8 @@ def print_particles(particles):             # PRINT A LIST OF ALL THE PARTICLES 
 
 def load_particles(particles):
 
-    file = open("test_particles.txt", "r")
+    filename = input("Enter the name of the file to be read (incl. '.txt')\n")
+    file = open(filename, "r")
     counter = 0
 
     for line in file:
@@ -189,7 +197,7 @@ def main():
     print("Hello and welcome to Particle Interaction Simulation 0.1.")
 
     while choice != 6:      # The program operates within this while loop
-
+        try
         if choice == -1:
 
             print("What would you like to do? Enter your choice as, for example, '1'.\n")
